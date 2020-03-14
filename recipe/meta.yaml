@@ -20,9 +20,7 @@ requirements:
     - cmake >=3.12
     - make
   host:
-    - boost-cpp >=1.69.0
-  run:
-    - boost-cpp >=1.69.0
+    - boost-cpp
   run_constrained:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx]
 
