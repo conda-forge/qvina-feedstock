@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/hadim/qvina/archive/cmake.zip
-  sha256: fc2a06f6b010e3868cab82cf3d47cb7f67802a8790ff711f9573e5a3817812df
+  sha256: da78b5dc3d7a0b145f13ac7698bae02a9f03fdf10b5fbf06dadce459b3f73a66
 
 build:
   skip: True  # [(win and vc<14)]
