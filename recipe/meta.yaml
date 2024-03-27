@@ -11,11 +11,12 @@ source:
 
 build:
   skip: True  # [(win and vc<14)]
-  number: 4
+  number: 5
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - cmake >=3.12
     - make
@@ -23,7 +24,6 @@ requirements:
     - libboost-devel
   run:
   run_constrained:
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx]
 
 test:
   commands:
