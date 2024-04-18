@@ -4,6 +4,9 @@ setlocal EnableDelayedExpansion
 mkdir build
 cd build
 
+:: upstream uses deprecated boost headers; allow for now
+set "CXXFLAGS=%CXXFLAGS% -DBOOST_TIMER_ENABLE_DEPRECATED"
+
 :: Configure using the CMakeFiles
 cmake -G "NMake Makefiles" ^
       -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
