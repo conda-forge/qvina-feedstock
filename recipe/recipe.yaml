@@ -20,7 +20,7 @@ build:
         set -ex
         # upstream smina uses deprecated boost headers; allow for now
         export CXXFLAGS="${CXXFLAGS} -DBOOST_TIMER_ENABLE_DEPRECATED"
-        cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$PREFIX
+        cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$PREFIX $SRC_DIR
         make -j $CPU_COUNT
         make install
     - if: win
@@ -33,6 +33,7 @@ build:
               -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
               -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
               -DCMAKE_BUILD_TYPE:STRING=Release ^
+              %SRC_DIR%
         if errorlevel 1 exit 1
         :: Build using Ninja
         ninja
@@ -47,7 +48,7 @@ requirements:
     - ${{ stdlib("c") }}
     - ${{ compiler('cxx') }}
     - cmake >=3.12
-    - ${{ "make" if unix else "ninja" }}
+    - ninja
   host:
     - libboost-devel
 
