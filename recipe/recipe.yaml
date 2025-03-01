@@ -21,8 +21,8 @@ build:
         # upstream smina uses deprecated boost headers; allow for now
         export CXXFLAGS="${CXXFLAGS} -DBOOST_TIMER_ENABLE_DEPRECATED"
         cmake -G "Ninja" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$PREFIX $SRC_DIR
-        make -j $CPU_COUNT
-        make install
+        ninja -j $CPU_COUNT
+        ninja install
     - if: win
       then: |
         setlocal EnableDelayedExpansion
