@@ -50,7 +50,7 @@ requirements:
     - cmake >=3.12
     - ninja
   host:
-    - libboost-devel <1.86
+    - libboost-devel <=1.84
 
 tests:
   - script:
