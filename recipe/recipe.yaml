@@ -14,7 +14,6 @@ source:
 
 build:
   number: 6
-  skip: (win and vc<14)
 
 requirements:
   build:
@@ -25,8 +24,6 @@ requirements:
     - make
   host:
     - libboost-devel
-  run:
-  run_constraints: run_constrained
 
 tests:
   - script:
