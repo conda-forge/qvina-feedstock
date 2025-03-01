@@ -27,18 +27,14 @@ requirements:
 
 tests:
   - script:
-      - if: not win
-        then: test -f ${PREFIX}/bin/vina
-      - if: not win
-        then: test -f ${PREFIX}/bin/qvina2
-      - if: not win
-        then: test -f ${PREFIX}/bin/qvinaw
-      - if: not win
-        then: vina --help
-      - if: not win
-        then: qvina2 --help
-      - if: not win
-        then: qvinaw --help
+      - vina --help
+      - qvina2 --help
+      - qvinaw --help
+  - package_contents:
+      bin:
+        - vina
+        - qvina2
+        - qvinaw
 
 about:
   license: Apache-2.0
