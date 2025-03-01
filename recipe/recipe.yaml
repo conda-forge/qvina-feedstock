@@ -21,15 +21,18 @@ requirements:
     - ${{ stdlib("c") }}
     - ${{ compiler('cxx') }}
     - cmake >=3.12
-    - make
+    - ${{ "make" if unix else "ninja" }}
   host:
     - libboost-devel
 
 tests:
   - script:
-      - vina --help
-      - qvina2 --help
-      - qvinaw --help
+      # osx-arm64 with cross-compilation won't work because of "Bad CPU type" error
+      - if: build_platform == target_platform and not osx-arm64
+        then:
+          - vina --help
+          - qvina2 --help
+          - qvinaw --help
   - package_contents:
       bin:
         - vina

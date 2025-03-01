@@ -8,17 +8,17 @@ cd build
 set "CXXFLAGS=%CXXFLAGS% -DBOOST_TIMER_ENABLE_DEPRECATED"
 
 :: Configure using the CMakeFiles
-cmake -G "NMake Makefiles" ^
+cmake -G "Ninja" ^
       -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
       -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
       -DCMAKE_BUILD_TYPE:STRING=Release ^
       ..
 if errorlevel 1 exit 1
 
-:: Build!
-nmake
+:: Build using Ninja
+ninja
 if errorlevel 1 exit 1
 
-:: Install!
-nmake install
+:: Install using Ninja
+ninja install
 if errorlevel 1 exit 1
