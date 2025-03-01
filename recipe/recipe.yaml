@@ -1,0 +1,56 @@
+schema_version: 1
+
+context:
+  name: qvina
+  version: 2.1.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/hadim/qvina/archive/cmake.zip
+  sha256: da78b5dc3d7a0b145f13ac7698bae02a9f03fdf10b5fbf06dadce459b3f73a66
+
+build:
+  number: 6
+  skip: (win and vc<14)
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+    - ${{ compiler('cxx') }}
+    - cmake >=3.12
+    - make
+  host:
+    - libboost-devel
+  run:
+  run_constraints: run_constrained
+
+tests:
+  - script:
+      - if: not win
+        then: test -f ${PREFIX}/bin/vina
+      - if: not win
+        then: test -f ${PREFIX}/bin/qvina2
+      - if: not win
+        then: test -f ${PREFIX}/bin/qvinaw
+      - if: not win
+        then: vina --help
+      - if: not win
+        then: qvina2 --help
+      - if: not win
+        then: qvinaw --help
+
+about:
+  license: Apache-2.0
+  license_file: LICENSE
+  summary: Accurately speed up AutoDock Vina
+  homepage: https://qvina.github.io/
+  repository: https://github.com/QVina/qvina
+  documentation: https://qvina.github.io/
+
+extra:
+  recipe-maintainers:
+    - hadim
